@@ -12,10 +12,10 @@ const SITE = {
 export const demoStations: Station[] = [
   {
     id: "hack-bay",
-    name: "ËCURIOUS Smart Bays",
+    name: "BayHold Smart Bays",
     ...SITE,
     ...nearVenue(0, 0),
-    network: "ËCURIOUS",
+    network: "BayHold",
     connectors: [],
     reservable: true,
     source: "ecurious",

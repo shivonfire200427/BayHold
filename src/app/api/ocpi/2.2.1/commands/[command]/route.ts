@@ -62,7 +62,7 @@ export async function POST(request: Request, context: Context) {
         timeout: 30,
         message: hardwareError
           ? `Hold created. The lock did not confirm yet: ${hardwareError}`
-          : "Watt extension: bind the plate at data.check_in_url. response_url is not called.",
+          : "BayHold extension: bind the plate at data.check_in_url. response_url is not called.",
         data: {
           reservation_id: reservation.ocpiReservationId ?? reservation.id,
           check_in_url: `${origin}${reservation.checkInPath}`,
@@ -88,7 +88,7 @@ export async function POST(request: Request, context: Context) {
       });
     }
 
-    return ok({ result: "NOT_SUPPORTED", timeout: 0, message: "Watt supports RESERVE_NOW and CANCEL_RESERVATION" });
+    return ok({ result: "NOT_SUPPORTED", timeout: 0, message: "BayHold supports RESERVE_NOW and CANCEL_RESERVATION" });
   } catch (error) {
     return handle(error);
   }

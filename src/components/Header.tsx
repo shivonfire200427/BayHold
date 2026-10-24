@@ -51,11 +51,11 @@ export function Header() {
             {link.label}
           </Link>
         ))}
+        <ThemeToggle />
       </nav>
       <Link href="/" className="brand">
-        <span className="brand-name">ËCURIOUS</span>
+        <span className="brand-name">BayHold</span>
       </Link>
-      <ThemeToggle />
     </header>
   );
 }

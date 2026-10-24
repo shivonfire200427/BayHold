@@ -3,8 +3,8 @@ import type { MetadataRoute } from "next";
 /** Lets the site install as an app ("Add to Home Screen") while staying a normal website. */
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Watt · Reserve a charging bay",
-    short_name: "Watt",
+    name: "BayHold · Reserve a charging bay",
+    short_name: "BayHold",
     description:
       "Find public EV chargers, reserve a bay that is free when you arrive, and check in by licence plate.",
     start_url: "/",

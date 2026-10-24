@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
   }
   return new NextResponse("Password required", {
     status: 401,
-    headers: { "WWW-Authenticate": 'Basic realm="Watt", charset="UTF-8"' },
+    headers: { "WWW-Authenticate": 'Basic realm="BayHold", charset="UTF-8"' },
   });
 }
 

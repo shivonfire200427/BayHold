@@ -4,7 +4,7 @@ import { applyCamera, hardwarePlan, isBayOccupied, markBayOccupied, setBarrier }
 
 /**
  * Ecurious hackathon hardware (Chang Cheng CC5S ground locks with plate cameras).
- * Watt stays the reservation brain; Ecurious is the hands and eyes:
+ * BayHold stays the reservation brain; Ecurious is the hands and eyes:
  *   - reserve   -> raise the barrier and whitelist the booked plate in the camera
  *   - arrival   -> the camera auto-lowers for that plate; its photo event checks the driver in
  *   - departure -> vacancy event closes the session; the barrier opens for anyone
@@ -34,8 +34,8 @@ const COMMAND_COOLDOWN_MS = 15_000;
 const RECONCILE_MS = 8_000;
 
 /**
- * Showcase mode for a public link: read live lock status and events, but never send a
- * command to the physical locks. Set SHOWCASE_MODE=true on any public deployment.
+ * Opt-in only. Unset, empty, or false: reserve, check-in, and release command the locks.
+ * SHOWCASE_MODE=true reads live status and events and does not send whitelist, lock, or unlock.
  */
 export function showcaseMode(): boolean {
   return process.env.SHOWCASE_MODE === "true";

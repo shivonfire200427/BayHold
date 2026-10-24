@@ -300,7 +300,7 @@ export function DriverApp() {
                 {remain && <span className="timer" title="Time left on the hold">{remain}</span>}
               </div>
               <div>
-                <h2>{reservation.stationName}</h2>
+                <h2 className={reservation.stationName.includes("BayHold") ? "as-typed" : undefined}>{reservation.stationName}</h2>
                 <p className="muted small">
                   {reservation.bayLabel} · {formatWhen(reservation.windowStart)}–{formatWhen(reservation.windowEnd)}
                 </p>
@@ -400,11 +400,11 @@ export function DriverApp() {
           {selected && (
             <section className="card stack numbered">
               <div className="section-title">
-                <span className="kicker">{selected.distanceKm} km away · {selected.network}</span>
+                <span className="kicker">{selected.distanceKm} km away · {selected.network === "BayHold" ? <span className="as-typed">{selected.network}</span> : selected.network}</span>
                 {selected.reservable ? <span className="badge">Reservable</span> : <span className="badge dim">Directory</span>}
               </div>
               <div>
-                <h1>{selected.name}</h1>
+                <h1 className={selected.name.includes("BayHold") ? "as-typed" : undefined}>{selected.name}</h1>
                 <p className="muted small">
                   {[selected.street, `${selected.postcode} ${selected.city}`.trim()].filter(Boolean).join(", ")}
                 </p>

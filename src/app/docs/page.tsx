@@ -4,7 +4,7 @@ export default function DocsPage() {
   return (
     <main className="page docs">
       <p className="kicker">Process notes</p>
-      <h1>How Watt holds a public bay</h1>
+      <h1>How BayHold holds a public bay</h1>
       <p>
         The browser only talks to this app. The app talks to GoingElectric for the map and to an ËCURIOUS adapter for the lock. Until venue credentials are set, the adapter’s stand-in is a file-backed test bay. It does not call production chargers.
       </p>
@@ -14,7 +14,7 @@ export default function DocsPage() {
         Map and booking live in the driver screen. <code>GET /api/stations</code> merges the ËCURIOUS Smart Bays site (locks 0001–0003) with GoingElectric when <code>GOINGELECTRIC_API_KEY</code> is set. There are no stand-in pins: if GoingElectric is unavailable, the map says so and shows only the real locks. Every live station shows a “Data: GoingElectric.de” credit and a link to its entry, as the API terms require. The key stays on the server. <code>POST /api/reservations</code> creates a hold. <code>POST /api/reservations/:id</code> runs cancel, late, confirm, charge, release, reroute, and bind plate.
       </p>
       <p>
-        Watt is the reservation brain; the ËCURIOUS hackathon server is the hardware layer (Chang Cheng CC5S ground locks with plate cameras). The ËCURIOUS Smart Bays site maps to the team's three real locks (<code>lock-0001…0003</code>). On reserve, Watt raises the barrier (<code>POST /api/v1/locks/:id/lock</code>) and writes the booked plate into the camera whitelist (<code>/whitelist</code>), so the hardware itself lowers the arm when that car arrives. Watt listens to the Server-Sent Events stream (<code>/events</code>): <code>photo_captured</code> checks the driver in, <code>vehicle_presence: vacant</code> closes the session, <code>status_change</code> mirrors the arm. A reconcile loop every 8 seconds re-applies the desired state (raised only while a hold is waiting and the bay is empty; open otherwise), so no-shows and cancellations reopen the bay even if an event is missed. Auth uses the team key in an <code>X-API-Key</code> header, kept server-side in <code>ECURIOUS_API_KEY</code>.</p>
+        BayHold is the reservation brain; the ËCURIOUS hackathon server is the hardware layer (Chang Cheng CC5S ground locks with plate cameras). The ËCURIOUS Smart Bays site maps to the team's three real locks (<code>lock-0001…0003</code>). On reserve, BayHold raises the barrier (<code>POST /api/v1/locks/:id/lock</code>) and writes the booked plate into the camera whitelist (<code>/whitelist</code>), so the hardware itself lowers the arm when that car arrives. BayHold listens to the Server-Sent Events stream (<code>/events</code>): <code>photo_captured</code> checks the driver in, <code>vehicle_presence: vacant</code> closes the session, <code>status_change</code> mirrors the arm. A reconcile loop every 8 seconds re-applies the desired state (raised only while a hold is waiting and the bay is empty; open otherwise), so no-shows and cancellations reopen the bay even if an event is missed. Auth uses the team key in an <code>X-API-Key</code> header, kept server-side in <code>ECURIOUS_API_KEY</code>.</p>
 
       <h2>Reservation cycle</h2>
       <ol>
@@ -41,7 +41,7 @@ export default function DocsPage() {
 
       <h2>Another charging app</h2>
       <p>
-        <code>POST /api/ocpi/2.2.1/commands/RESERVE_NOW</code> accepts a location id, an EVSE uid, an expiry, and a token. The reply is an OCPI command result plus a Watt check-in URL. OCPI has no plate, so the camera waits until the driver binds one at <code>/r/[id]</code>. <code>CANCEL_RESERVATION</code> closes the hold. <code>response_url</code> is not called. OCPP ReserveNow is the inspiration for the state names, and this app does not speak OCPP to a live charge point.
+        <code>POST /api/ocpi/2.2.1/commands/RESERVE_NOW</code> accepts a location id, an EVSE uid, an expiry, and a token. The reply is an OCPI command result plus a BayHold check-in URL. OCPI has no plate, so the camera waits until the driver binds one at <code>/r/[id]</code>. <code>CANCEL_RESERVATION</code> closes the hold. <code>response_url</code> is not called. OCPP ReserveNow is the inspiration for the state names, and this app does not speak OCPP to a live charge point.
       </p>
       <pre>{`curl -s -X POST http://localhost:3000/api/ocpi/2.2.1/commands/RESERVE_NOW \\
   -H 'content-type: application/json' \\
@@ -61,7 +61,7 @@ export default function DocsPage() {
       <ul>
         <li><b>Reminders.</b> Not built. Plan: a web push 15 minutes before the window and at the start of the grace period, with one-tap “I’m running late” or “Cancel”. The installable app already has the manifest for it.</li>
         <li><b>Detecting a driver who is not coming.</b> Today: plate check-in, the late button and the grace timer. Plan: with the driver’s opt-in, share an ETA from their phone; if the ETA passes the end of the grace period, offer a cancel before a fee applies.</li>
-        <li><b>Which kind of car is blocking.</b> The lock reports occupancy and a plate, not the drivetrain or whether a cable is plugged in. Watt treats any non-booked plate as a block and never charges the waiting driver. Plan: join the plate with the charge point’s OCPP session status: no session means a parked car (combustion or idle EV), an active session means an EV still charging, which gets a friendly overstay nudge instead of an escalation.</li>
+        <li><b>Which kind of car is blocking.</b> The lock reports occupancy and a plate, not the drivetrain or whether a cable is plugged in. BayHold treats any non-booked plate as a block and never charges the waiting driver. Plan: join the plate with the charge point’s OCPP session status: no session means a parked car (combustion or idle EV), an active session means an EV still charging, which gets a friendly overstay nudge instead of an escalation.</li>
         <li><b>Who is responsible and how it escalates.</b> Driver: rerouted at once, no fee. After 15 minutes the hold releases. Proposed operator path: an alert at 15 minutes, then site staff or a parking warden at 30 minutes; the operator ledger already keeps an 8-character audit reference and a masked plate for each block.</li>
         <li><b>Temporary and foreign plates.</b> Plates are normalised to letters of any alphabet and digits, so foreign plates match. A temporary plate the camera cannot read in full goes to the driver to confirm, and the driver can rebind the plate on the check-in page before arrival.</li>
         <li><b>Hardware alarms.</b> Built: alarms from the lock (water ingress, motor stall, tamper) appear in red in the Live locks feed and on the operator’s bay cards.</li>

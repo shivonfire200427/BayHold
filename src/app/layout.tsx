@@ -12,17 +12,17 @@ const display = Bebas_Neue({ subsets: ["latin"], weight: "400", variable: "--fon
 
 export const metadata: Metadata = {
   title: {
-    default: "Watt · A charging bay that is free when you arrive",
-    template: "%s · Watt",
+    default: "BayHold · A charging bay that is free when you arrive",
+    template: "%s · BayHold",
   },
   description:
-    "Find public EV chargers from GoingElectric, reserve a bay held by ËCURIOUS hardware, and check in by licence plate.",
-  applicationName: "Watt",
-  appleWebApp: { capable: true, title: "Watt", statusBarStyle: "black-translucent" },
+    "Find public EV chargers from GoingElectric, reserve a BayHold bay held by Ecurious hardware, and check in by licence plate.",
+  applicationName: "BayHold",
+  appleWebApp: { capable: true, title: "BayHold", statusBarStyle: "black-translucent" },
   formatDetection: { telephone: false },
   openGraph: {
-    title: "Watt · Reserve a charging bay",
-    description: "A charging bay that is free when you arrive. Built for the ËCURIOUS challenge.",
+    title: "BayHold · Reserve a charging bay",
+    description: "A charging bay that is free when you arrive. Built for the Ecurious challenge.",
     type: "website",
   },
 };

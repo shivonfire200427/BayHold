@@ -145,11 +145,24 @@ p { margin: 0; }
 .brand {
   grid-column: 2; justify-self: center;
   color: var(--text); text-decoration: none;
-  font-family: var(--font-sans), system-ui, sans-serif;
-  font-size: var(--fs--1); font-weight: 600; letter-spacing: 0.28em; line-height: 1;
-  text-transform: uppercase;
+  font-family: var(--font-sans), sans-serif;
+  font-size: var(--fs-0); font-weight: 600; letter-spacing: 0.01em; line-height: 1;
+  text-transform: none;
 }
-.brand-name { letter-spacing: 0.28em; }
+.brand-name { letter-spacing: 0.01em; text-transform: none; }
+/* Product spelling is BayHold. These nodes sit inside uppercase display type. */
+.as-typed { text-transform: none; }
+h1.as-typed,
+h2.as-typed,
+.side h1.as-typed,
+.side h2.as-typed {
+  font-family: var(--font-sans), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-transform: none;
+}
+.side h1.as-typed { font-size: var(--fs-3); line-height: 1.05; }
+.side h2.as-typed { font-size: var(--fs-1); line-height: 1.2; }
 .nav-toggle {
   display: none; grid-column: 1; justify-self: start;
   width: 36px; height: 36px; padding: 0;
@@ -861,8 +874,10 @@ body, .topbar, .side, .card, input, .segmented, .theme-toggle, .notice, .status,
 /* ---------- Navigation: quiet tracked links, menu only on a narrow screen ---------- */
 .brand-name {
   color: var(--text);
+  font-family: var(--font-sans), sans-serif;
   font-weight: 600;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.01em;
+  text-transform: none;
   background: none;
   -webkit-background-clip: border-box;
   background-clip: border-box;
@@ -891,6 +906,16 @@ body, .topbar, .side, .card, input, .segmented, .theme-toggle, .notice, .status,
   }
   .topbar nav.open { display: flex; }
   .topbar nav a { padding: 11px 18px; font-size: var(--fs--1); }
+  .topbar nav .theme-mark { margin: 6px 18px 4px; }
+}
+@media (min-width: 861px) {
+  .topbar nav .theme-mark {
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    margin-top: calc(env(safe-area-inset-top, 0px) / 2);
+    transform: translateY(-50%);
+  }
 }
 
 /* ---------- Premium map marker ---------- */
