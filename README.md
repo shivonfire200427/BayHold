@@ -28,7 +28,7 @@ npm install
 npm run dev
 ```
 
-Open http://localhost:3000.
+
 
 1. Leave **Reservable only** on and open **BayHold Smart Bays**. The theme control is a sun/moon icon. On a phone it sits in the menu.
 2. Plate `M-WA 1001`. Arrival **Now**, **In 15 min**, or **In 30 min**. Charging time **30 min**, **45 min**, or **60 min**. Tick the plate notice, then **Reserve this bay**.
