@@ -1,4 +1,4 @@
-# Watt
+# BayHold
 
 A charging-app prototype for the Ecurious challenge. Drivers see public charge points, reserve a bay with hardware, check in by license plate, charge, and release the bay. The same server covers no-shows, a vehicle already in the bay, a reservation created by another app, and a small utilisation ledger.
 
