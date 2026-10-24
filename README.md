@@ -2,7 +2,7 @@
 
 **A charging bay that is free when you arrive.** Smart reservations for public EV charging, built on real ËCURIOUS parking locks for the Ecurious Smart Reservation Challenge at WATT THE HACK Munich 2026.
 
-**Live demo:** https://bayhold.onrender.com (showcase mode: live data and the full booking flow, without moving the physical barriers)
+**Live demo:** https://bayhold.onrender.com. Leave `SHOWCASE_MODE` unset or `false` on the host so a reservation commands the locks. Set it to `true` only to watch live status without moving the barriers.
 
 | Map and booking | Operator dashboard | Phone |
 |---|---|---|
