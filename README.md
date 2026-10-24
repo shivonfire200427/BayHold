@@ -19,11 +19,9 @@
 - Privacy by design: plates and cards stored only as salted hashes, masked everywhere
 
 
-A charging-app prototype for the Ecurious challenge. Drivers see public charge points, reserve a bay with hardware, check in by license plate, charge, and release the bay. The same server covers no-shows, a vehicle already in the bay, a reservation created by another app, and a small utilisation ledger.
+## Run it on your own computer (developers)
 
-This is a prototype. With `ECURIOUS_BASE_URL` and `ECURIOUS_API_KEY` set, the BayHold Smart Bays site is the three live locks. It does not call public or production chargers.
-
-## Run
+Just want to try it? Use the **[live demo](https://bayhold.onrender.com)**. The steps below are only for running the code locally, where `localhost` means your own machine.
 
 ```bash
 npm install
