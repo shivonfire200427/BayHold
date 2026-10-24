@@ -67,8 +67,12 @@ This is a prototype design, not a legal assessment. The driver consents before a
 - The app does not speak OCPP to a charge point. ReserveNow is only the model for the hold. OCPI `response_url` is not called.
 - One `data/state.json` file is the store. Two server processes would not share it.
 
-## Layout
+## Project structure
 
-`docs/PITCH.md` is the pitch pack: deck content, demo script, jury Q&A and submission checklist.
-
-`src/app` is the UI and the BFF. `src/lib/store.ts` is the reservation ledger and the policy. `src/lib/stations.ts` is the Ecurious Smart Bays site: locks 0001–0003, placed at the venue from `src/lib/venue.ts`.
+- `src/app/`: pages (Map, Dashboard, How it works, check-in) and the API routes
+- `src/components/`: the map, booking panel, live bays, chart and theme switch
+- `src/lib/ecurious.ts`: the link to the ËCURIOUS locks (commands, live events, 8-second sync)
+- `src/lib/store.ts`: bookings and the rules (grace period, fees, plate matching, privacy)
+- `src/lib/goingelectric.ts`: public charge points for the map
+- `src/lib/stations.ts` and `src/lib/venue.ts`: the ËCURIOUS bays (lock-0002, lock-0003) at TUM Audimax
+- `docs/screenshots/`: screenshots of the app
