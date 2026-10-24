@@ -1,0 +1,16 @@
+# dependencies and builds
+node_modules
+.next
+out
+*.tsbuildinfo
+
+# secrets: API keys live only in .env.local
+.env
+.env*.local
+
+# runtime booking ledger (contains plate hashes)
+data/*
+!data/.gitkeep
+
+# OS clutter
+.DS_Store
